@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Graph } from "react-d3-graph";
-import { fetchGraphData } from "../services/graphs.js";
+import { fetchGraphData } from "../../services/graphs.js";
 
 const SystemArchitecture = () => {
     const [graphData, setGraphData] = useState({ nodes: [], links: [] });

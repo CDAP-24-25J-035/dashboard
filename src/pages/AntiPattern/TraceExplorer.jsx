@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { fetchTraces } from "../services/traces.js";
+import { fetchTraces } from "../../services/traces.js";
 import { Timeline } from "vis-timeline/standalone";
 import moment from "moment";
 import "vis-timeline/styles/vis-timeline-graph2d.min.css";

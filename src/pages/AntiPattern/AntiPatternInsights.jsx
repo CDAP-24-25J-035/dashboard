@@ -14,7 +14,7 @@ import {
     fetchImproperApiGatewayUsage,
     fetchEventualConsistency,
     fetchImproperLoadBalancer,
-} from "../services/pattern.js";
+} from "../../services/pattern.js";
 import "chart.js/auto";
 
 const AntiPatternInsights = () => {

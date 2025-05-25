@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllAntiPatterns } from "../services/pattern.js";
+import { fetchAllAntiPatterns } from "../../services/pattern.js";
 
 const ToggleSection = ({ title, description, children }) => {
     const [isOpen, setIsOpen] = useState(false);

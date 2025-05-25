@@ -7,6 +7,7 @@ const Header = () => {
         { name: "Insights", path: "/insights" },
         { name: "Trace Explorer", path: "/trace-explorer" },
         { name: "System Architecture", path: "/system-architecture" },
+        { name: "Coupling Indexes", path: "/coupling-indexes" },
         // { name: "Settings", path: "/settings" },
     ];
 
