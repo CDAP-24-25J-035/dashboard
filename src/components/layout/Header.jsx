@@ -10,6 +10,7 @@ const Header = () => {
         // { name: "Coupling Indexes", path: "/coupling-indexes" },
         { name: "Weighted Graph", path: "/weighted-graph" },
         { name: "Coupling Change Points", path: "/change-points" },
+        {name:"Resiliency ",path:"/chaos-resilience-dector"}
         // { name: "Settings", path: "/settings" },
     ];
 
