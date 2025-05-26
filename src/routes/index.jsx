@@ -8,7 +8,7 @@ import AntiPatternDetection from "@/pages/AntiPattern/AntiPatternDetection.jsx";
 import CouplingIndexes from "@/pages/Coupling/CouplingIndexes.jsx";
 import WeightedGraphViewer from '@/pages/Coupling/WeightedGraphViewer';
 import ChangePointPlot from '@/pages/Coupling/ChangePointPlot';
-
+import ChaosAndResilienceExplorer from '@/pages/Resiliency/ChaosAndResilienceExplorer';
 const AnimatedRoutes = () => {
     return (
         <Routes>
@@ -22,6 +22,7 @@ const AnimatedRoutes = () => {
             <Route path="/weighted-graph" element={<WeightedGraphViewer />} />
             <Route path="/change-points" element={<ChangePointPlot />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/chaos-resilience-dector" element={<ChaosAndResilienceExplorer/>}/>
         </Routes>
     );
 };
