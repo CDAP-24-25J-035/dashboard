@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const timeZones = [
+  "UTC", "Asia/Kolkata", "America/New_York", "Europe/London", "Europe/Paris",
+  "Asia/Tokyo", "Australia/Sydney", "America/Los_Angeles", "America/Chicago",
+  "Asia/Shanghai", "Asia/Dubai", "Europe/Berlin", "America/Sao_Paulo",
+  "Africa/Johannesburg", "Asia/Singapore", "America/Denver", "Asia/Hong_Kong",
+  "Europe/Moscow", "Pacific/Auckland", "America/Toronto",
+];
+
 const ManageUserReports = () => {
   const [userReports, setUserReports] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -9,12 +17,11 @@ const ManageUserReports = () => {
     serviceName: '',
     email: '',
     region: '',
-    localTime: '',  // consistently use localTime
+    reportTime: '',
   });
 
-  const BASE_API_URL = 'http://localhost:8080';
+  const BASE_API_URL = 'http://178.128.19.205:8080';
 
-  // Fetch all user reports on mount
   useEffect(() => {
     fetchReports();
   }, []);
@@ -22,13 +29,10 @@ const ManageUserReports = () => {
   const fetchReports = async () => {
     try {
       const response = await axios.get(`${BASE_API_URL}/user-report`);
-
-      // Map response to normalize time field from `reportTime` to `localTime`
       const normalizedData = response.data.map(report => ({
         ...report,
-        localTime: report.reportTime || report.localTime || '',  // normalize time field
+        reportTime: report.reportTime || '',
       }));
-
       setUserReports(normalizedData);
     } catch (error) {
       console.error('Failed to fetch user reports:', error);
@@ -42,18 +46,22 @@ const ManageUserReports = () => {
       serviceName: report.serviceName,
       email: report.email,
       region: report.region,
-      localTime: report.localTime ? report.localTime.substring(0, 5) : '',  // HH:mm format
+      reportTime: report.reportTime ? report.reportTime.substring(0, 5) : '',
     });
   };
 
   const handleCancel = () => {
     setEditingId(null);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setFormData({
       id: '',
       serviceName: '',
       email: '',
       region: '',
-      localTime: '',
+      reportTime: '',
     });
   };
 
@@ -69,8 +77,7 @@ const ManageUserReports = () => {
         serviceName: formData.serviceName,
         email: formData.email,
         region: formData.region,
-        // Append ':00' to make full HH:mm:ss format expected by backend
-        localTime: formData.localTime ? formData.localTime + ':00' : null,
+        reportTime: formData.reportTime ? `${formData.reportTime}:00` : null,
       };
 
       await axios.put(`${BASE_API_URL}/user-report`, updatedReport);
@@ -83,7 +90,6 @@ const ManageUserReports = () => {
     }
   };
 
-  // DELETE handler to remove a user report
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this report?')) return;
 
@@ -134,19 +140,25 @@ const ManageUserReports = () => {
                     />
                   </td>
                   <td className="border px-4 py-2">
-                    <input
-                      type="text"
+                    <select
                       name="region"
                       value={formData.region}
                       onChange={handleChange}
                       className="border p-1 rounded w-full"
-                    />
+                    >
+                      <option value="">Select Time Zone</option>
+                      {timeZones.map((zone) => (
+                        <option key={zone} value={zone}>
+                          {zone}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                   <td className="border px-4 py-2">
                     <input
                       type="time"
-                      name="localTime"
-                      value={formData.localTime}
+                      name="reportTime"
+                      value={formData.reportTime}
                       onChange={handleChange}
                       className="border p-1 rounded w-full"
                     />
@@ -172,7 +184,7 @@ const ManageUserReports = () => {
                   <td className="border px-4 py-2">{report.email}</td>
                   <td className="border px-4 py-2">{report.region}</td>
                   <td className="border px-4 py-2">
-                    {report.localTime ? report.localTime.substring(0, 5) : '-'}
+                    {report.reportTime ? report.reportTime.substring(0, 5) : '-'}
                   </td>
                   <td className="border px-4 py-2 space-x-2">
                     <button
