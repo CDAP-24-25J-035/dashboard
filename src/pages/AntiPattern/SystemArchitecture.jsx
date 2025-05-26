@@ -98,6 +98,8 @@ const SystemArchitecture = () => {
 
     if (loading) return <p className="text-lg text-gray-700">🔄 Loading system architecture...</p>;
     if (error) return <p className="text-red-500">{error}</p>;
+    if (!Object.keys(graphData.nodes).length > 0 || !Object.keys(graphData.links).length > 0)
+        return <p className="text-gray-500">No data to create the system architecture...</p>
 
     return (
         <div style={{ textAlign: "center", padding: "20px", position: "relative" }}>

@@ -84,6 +84,9 @@ const TraceExplorer = () => {
     if (loading)
         return <p className="text-center mt-10">Loading traces...</p>;
 
+    if (!Object.keys(traceData).length > 0)
+        return <p className="text-center mt-10">No anti-patterns detected!</p>;
+
     return (
         <div className="p-6">
             <h1 className="text-2xl font-bold mb-4">Trace Explorer</h1>
