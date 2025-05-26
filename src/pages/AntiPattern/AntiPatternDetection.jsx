@@ -32,8 +32,8 @@ const AntiPatternDetection = () => {
     useEffect(() => {
         fetchAllAntiPatterns()
             .then((data) => {
-                if (data) setAntiPatterns(data);
-                else setError("Failed to fetch anti-patterns");
+                if (data && Object.keys(data).length > 0) setAntiPatterns(data);
+                else setAntiPatterns(null);
             })
             .catch((err) => setError(`Error: ${err.message}`))
             .finally(() => setLoading(false));
@@ -41,6 +41,8 @@ const AntiPatternDetection = () => {
 
     if (loading) return <p className="text-lg text-gray-700">🔄 Loading anti-patterns...</p>;
     if (error) return <p className="text-red-500">❌ {error}</p>;
+
+    if (!(Object.keys(antiPatterns).length > 0)) return <p className="text-gray-500">No anti-patterns detected!</p>;
 
     return (
         <div className="p-6 space-y-6">
