@@ -43,7 +43,7 @@ const Header = () => {
                 <div className="relative group">
                     {/* Dropdown Trigger */}
                     <button className="text-white bg-gray-700 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-600">
-                        About MicroGraph Insights ▾
+                        About InfraPulse ▾
                     </button>
 
                     {/* Dropdown Content */}
@@ -56,10 +56,10 @@ const Header = () => {
                                 <a href="https://github.com/orgs/anti-pattern-analyzer/repositories">GitHub</a>
                             </li>
                             <hr className="border-t my-2" />
-                            <li className="px-4 py-2">MicroGraph Insights v1.59.0</li>
+                            <li className="px-4 py-2">InfraPulse v1.59.0</li>
                             <li className="px-4 py-2">Commit ed5cc29</li>
                             <li className="px-4 py-2">Build 2024-07-28T00:41:01Z</li>
-                            <li className="px-4 py-2">MicroGraph Insights UI v1.59.0</li>
+                            <li className="px-4 py-2">InfraPulse UI v1.59.0</li>
                         </ul>
                     </div>
                 </div>
