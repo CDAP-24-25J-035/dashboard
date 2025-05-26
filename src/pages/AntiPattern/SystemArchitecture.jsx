@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Graph } from "react-d3-graph";
-import { fetchGraphData } from "../../services/graphs.js";
+import { fetchAntiPatternGraphData } from "../../services/graphs.js";
 
 const SystemArchitecture = () => {
     const [graphData, setGraphData] = useState({ nodes: [], links: [] });
@@ -12,7 +12,7 @@ const SystemArchitecture = () => {
     useEffect(() => {
         const loadGraphData = async () => {
             try {
-                const data = await fetchGraphData();
+                const data = await fetchAntiPatternGraphData();
                 console.log("🔍 DEBUG: Received Graph Data:", data);
 
                 const transformedData = {
